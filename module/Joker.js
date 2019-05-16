@@ -1,4 +1,5 @@
-class Joker extends LivingCreator {
+var LivingCreator=require("./livingCreator.js");
+module.exports =class Joker extends LivingCreator {
     constructor(x, y, index){
         super(x, y, index);
         this.energy = 30;
@@ -36,12 +37,12 @@ class Joker extends LivingCreator {
     move() {
 
         var newc = this.chooseCell(0);
-        var newcell = random(newc);
+        var newcell = Random(newc);
         var cellnew = this.chooseCell(1);
-        var Cell = random(cellnew);
+        var Cell = Random(cellnew);
         JokerMoveArr.push(newcell);
         JokerMoveArr.push(Cell);
-        var rand = random(JokerMoveArr);
+        var rand = Random(JokerMoveArr);
         if (rand) {
             if (newcell) {
                 var x = rand[0];
@@ -59,7 +60,7 @@ class Joker extends LivingCreator {
                 var y1 = rand[1];
                 matrix[this.y][this.x] = 1;
                 matrix[y1][x1] = this.index;
-                var newgrass = new Grass(this.x, this.y, 1);
+                var newgrass = new Grass(x1, y1, 1);
                 GrassArr.push(newgrass);
                 this.x = x1;
                 this.y = y1;
@@ -69,13 +70,13 @@ class Joker extends LivingCreator {
     }
     eat() {
         var newCell = this.chooseCell(4);
-        var NewCell = random(newCell);
+        var NewCell = Random(newCell);
         var newcell = this.chooseCell(5);
-        var Newcell = random(newcell);
+        var Newcell = Random(newcell);
         JokerEaterArr.push(NewCell);
         JokerEaterArr.push(Newcell);
 
-        var rand = random(JokerEaterArr);
+        var rand = Random(JokerEaterArr);
         if (rand) {
 
             if (NewCell) {

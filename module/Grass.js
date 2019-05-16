@@ -1,8 +1,9 @@
-class Grass extends LivingCreator {
+var LivingCreator=require("./livingCreator.js");
+module.exports =class Grass extends LivingCreator {
 
-    mul() {
+    mul() {  
         this.multiply++;
-        var newCell = random(this.chooseCell(0));
+        var newCell = Random(this.chooseCell(0));
         if (this.multiply >= 8 && newCell) {
             var newGrass = new Grass(newCell[0], newCell[1], this.index);
             GrassArr.push(newGrass);

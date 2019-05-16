@@ -1,4 +1,5 @@
-class Gishatich extends LivingCreator {
+var LivingCreator=require("./livingCreator.js");
+module.exports =class Gishatich extends LivingCreator {
     constructor(x, y, index){
         super(x, y, index);
         this.energy = 10;
@@ -38,7 +39,7 @@ class Gishatich extends LivingCreator {
     move() {
 
         var newcell = this.chooseCell(0);
-        var Newcell = random(newcell);
+        var Newcell = Random(newcell);
         if (Newcell) {
             var x = Newcell[0];
             var y = Newcell[1];
@@ -51,7 +52,7 @@ class Gishatich extends LivingCreator {
     }
     eat() {
         var newcell = this.chooseCell(2);
-        var Newcell = random(newcell);
+        var Newcell = Random(newcell);
         if (Newcell) {
             var x = Newcell[0];
             var y = Newcell[1];
@@ -71,7 +72,7 @@ class Gishatich extends LivingCreator {
 
     }
     mul() {
-        var newCell = random(this.chooseCell(0));
+        var newCell = Random(this.chooseCell(0));
         if (newCell && this.energy >= 12) {
             var newX = newCell[0];
             var newY = newCell[1];

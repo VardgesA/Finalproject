@@ -1,4 +1,5 @@
-class GrassEater extends LivingCreator {
+var LivingCreator=require("./livingCreator.js");
+module.exports =class GrassEater extends LivingCreator {
     constructor(x, y, index){
         super(x, y, index);
         this.energy = 7;
@@ -24,7 +25,7 @@ class GrassEater extends LivingCreator {
     move() {
 
         var newcell = this.chooseCell(0);
-        var Newcell = random(newcell);
+        var Newcell = Random(newcell);
         if (Newcell) {
             var x = Newcell[0];
             var y = Newcell[1];
@@ -37,7 +38,7 @@ class GrassEater extends LivingCreator {
     }
     eat() {
         var newcell = this.chooseCell(1);
-        var Newcell = random(newcell);
+        var Newcell = Random(newcell);
         if (Newcell) {
             var x = Newcell[0];
             var y = Newcell[1];
@@ -55,7 +56,7 @@ class GrassEater extends LivingCreator {
         }
     }
     mul() {
-        var newCell = random(this.chooseCell(0));
+        var newCell = Random(this.chooseCell(0));
         if (newCell && this.energy >= 8) {
             var x = newCell[0];
             var y = newCell[1];
