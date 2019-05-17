@@ -4,7 +4,7 @@ module.exports =class GrassEater extends LivingCreator {
         super(x, y, index);
         this.energy = 7;
     }
-
+   
     getNewCoordinates() {
         this.directions = [
             [this.x - 1, this.y - 1],

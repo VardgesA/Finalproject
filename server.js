@@ -12,12 +12,12 @@ server.listen(3000, function () {
     console.log("port is runing")
 })
 //stex kapum em klassery
-var Grass = require('./module/Grass.js');
-var GrassEater = require('./module/GrassEater.js');
-var Gishatich = require('./module/Gishatich.js');
-var Hhbuys = require('./module/HHbuys.js')
-var Hhkendani = require('./module/HHkendani.js');
-var Joker = require('./module/Joker.js');
+ Grass = require('./module/Grass.js');
+ GrassEater = require('./module/GrassEater.js');
+ Gishatich = require('./module/Gishatich.js');
+ Hhbuys = require('./module/HHbuys.js')
+ Hhkendani = require('./module/HHkendani.js');
+ Joker = require('./module/Joker.js');
 
 
 GrassArr = [];
@@ -34,8 +34,8 @@ JokerMoveArr = [];
 
 
 
-var w = 50;
-var h = 60;
+var w = 40;
+var h = 40;
 function genMatrix(w, h) {
     var matrix = [];
     for (var y = 0; y < h; y++) {
@@ -44,8 +44,8 @@ function genMatrix(w, h) {
             var r = Math.floor(Math.random() * 200);
             if (r < 20) r = 0;
             else if (r < 40) r = 1;
-            else if (r < 42) r = 2;
-            else if (r < 75) r = 3;
+            else if (r < 80) r = 2;
+            else if (r < 90) r = 3;
             else if (r < 100) r = 4;
             else if (r < 140) r = 5;
             else if (r < 200) r = 6;
@@ -91,12 +91,14 @@ for (var y = 0; y < matrix.length; ++y) {
 function drewserver() {
     for (var i in GrassArr) {
         GrassArr[i].mul();
+        
     }
     for (var i in GrassEaterArr) {
         GrassEaterArr[i].move();
         GrassEaterArr[i].eat();
         GrassEaterArr[i].mul();
         GrassEaterArr[i].die();
+       
     }
     for (var i in GishatichArr) {
         GishatichArr[i].move();
@@ -126,3 +128,4 @@ setInterval(drewserver, 1000);
 Random = function (arr) {
     return arr[Math.floor(Math.random() * arr.length)]
 }
+ 

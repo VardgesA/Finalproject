@@ -1,4 +1,5 @@
 var LivingCreator=require("./livingCreator.js");
+
 module.exports =class Grass extends LivingCreator {
 
     mul() {  
@@ -11,4 +12,6 @@ module.exports =class Grass extends LivingCreator {
             this.multiply = 0;
         }
     }
+   
+    
 }

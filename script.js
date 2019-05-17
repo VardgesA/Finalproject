@@ -1,21 +1,22 @@
-var side = 20;
-var socket = io();
+var side = 10;
+ socket = io();
 
 
 function setup() {
 
-    createCanvas(200 * side, 200 * side);
+    createCanvas(40 * side, 40 * side);
     background('#acacac');
 
 }
 
+
 function draw() {
 
-    
+
 
 
 }
-function drawMatrix(matrix){
+function drawMatrix(matrix) {
     background('#33FFFF')
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
@@ -49,7 +50,7 @@ function drawMatrix(matrix){
         }
     }
 }
-socket.on("matrix",drawMatrix);
+socket.on("matrix", drawMatrix);
 
 
 
