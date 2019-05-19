@@ -12,14 +12,15 @@ server.listen(3000, function () {
     console.log("port is runing")
 })
 //stex kapum em klassery
- Grass = require('./module/Grass.js');
- GrassEater = require('./module/GrassEater.js');
- Gishatich = require('./module/Gishatich.js');
- Hhbuys = require('./module/HHbuys.js')
- Hhkendani = require('./module/HHkendani.js');
- Joker = require('./module/Joker.js');
+Grass = require('./module/Grass.js');
+GrassEater = require('./module/GrassEater.js');
+Gishatich = require('./module/Gishatich.js');
+Hhbuys = require('./module/HHbuys.js')
+Hhkendani = require('./module/HHkendani.js');
+Joker = require('./module/Joker.js');
 
-
+Weather = "Summer";
+Weatherinit = 1;
 GrassArr = [];
 GrassEaterArr = [];
 GishatichArr = [];
@@ -91,14 +92,14 @@ for (var y = 0; y < matrix.length; ++y) {
 function drewserver() {
     for (var i in GrassArr) {
         GrassArr[i].mul();
-        
+
     }
     for (var i in GrassEaterArr) {
         GrassEaterArr[i].move();
         GrassEaterArr[i].eat();
         GrassEaterArr[i].mul();
         GrassEaterArr[i].die();
-       
+
     }
     for (var i in GishatichArr) {
         GishatichArr[i].move();
@@ -121,6 +122,7 @@ function drewserver() {
         JokerArr[i].move();
         JokerArr[i].eat();
         JokerArr[i].die();
+
     }
     io.sockets.emit("matrix", matrix);
 }
@@ -128,4 +130,24 @@ setInterval(drewserver, 1000);
 Random = function (arr) {
     return arr[Math.floor(Math.random() * arr.length)]
 }
- 
+function draw_weater() {
+    Weatherinit++;
+    if (Weatherinit == 5) {
+        Weatherinit = 1
+    }
+    if (Weatherinit == 4) {
+        Weather = "Autumn";
+    }
+    if (Weatherinit == 3) {
+        Weather = "Winter";
+
+    }
+    if (Weatherinit == 2) {
+        Weather = "Spring";
+    }
+    if (Weatherinit == 1) {
+        Weather="Summer";
+    }
+    io.sockets.emit("exanak",Weather);
+}
+setInterval(draw_weater,7000)

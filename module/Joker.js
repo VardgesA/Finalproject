@@ -3,6 +3,7 @@ module.exports =class Joker extends LivingCreator {
     constructor(x, y, index){
         super(x, y, index);
         this.energy = 30;
+        
     }
     getNewCoordinates() {
         this.directions = [
