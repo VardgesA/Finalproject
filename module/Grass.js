@@ -11,6 +11,7 @@ module.exports =class Grass extends LivingCreator {
             matrix[newCell[1]][newCell[0]] = 1;
             this.multiply = 0;
         }
+        Grassinit++;
     }
    
     

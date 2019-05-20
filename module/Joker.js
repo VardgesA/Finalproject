@@ -94,6 +94,7 @@ module.exports =class Joker extends LivingCreator {
 
                 this.x = x;
                 this.y = y;
+                
             }
             else if (Newcell) {
                 var x1 = rand[0];
@@ -110,6 +111,7 @@ module.exports =class Joker extends LivingCreator {
 
                 this.x = x1;
                 this.y = y1;
+                
             }
             this.energy += 5;
         }
@@ -125,6 +127,7 @@ module.exports =class Joker extends LivingCreator {
                     break;
                 }
             }
+            Jokerinit--;
         }
     }
 }

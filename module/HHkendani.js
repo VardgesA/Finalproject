@@ -66,6 +66,7 @@ module.exports =class Hhkendani extends LivingCreator {
             }
             this.x = x;
             this.y = y;
+            
         }
     }
     die() {
@@ -77,6 +78,8 @@ module.exports =class Hhkendani extends LivingCreator {
                     break;
                 }
             }
+            Hhkendaniinit--;
         }
+
     }
 }

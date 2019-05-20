@@ -65,6 +65,7 @@ module.exports =class Hhbuys extends LivingCreator {
             }
             this.x = x;
             this.y = y;
+            
         }
     }
     die() {
@@ -76,7 +77,10 @@ module.exports =class Hhbuys extends LivingCreator {
                     break;
                 }
             }
+            Hhbuysinit--;
         }
+
+
     }
 
     

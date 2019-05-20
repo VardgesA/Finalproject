@@ -31,6 +31,12 @@ JokerArr = [];
 JokerEaterArr = [];
 JokerMoveArr = [];
 
+Grassinit=0;
+GrassEaterinit=0;
+Gishatichinit=0;
+Hhbuysinit=0;
+Hhkendaniinit=0;
+Jokerinit=0;
 
 
 
@@ -47,8 +53,8 @@ function genMatrix(w, h) {
             else if (r < 40) r = 1;
             else if (r < 80) r = 2;
             else if (r < 90) r = 3;
-            else if (r < 100) r = 4;
-            else if (r < 140) r = 5;
+            else if (r < 150) r = 4;
+            else if (r < 190) r = 5;
             else if (r < 200) r = 6;
             matrix[y][x] = r;
         }
@@ -65,26 +71,32 @@ for (var y = 0; y < matrix.length; ++y) {
         if (matrix[y][x] == 1) {
             var gr = new Grass(x, y, 1);
             GrassArr.push(gr);
+            Grassinit++;
         }
         else if (matrix[y][x] == 2) {
             var grassEater = new GrassEater(x, y, 2);
             GrassEaterArr.push(grassEater);
+            GrassEaterinit++;
         }
         else if (matrix[y][x] == 3) {
             var gish = new Gishatich(x, y, 3);
             GishatichArr.push(gish);
+            Gishatichinit++;
         }
         else if (matrix[y][x] == 4) {
             var xpasht = new Hhbuys(x, y, 4);
             XotpashtpanArr.push(xpasht);
+            Hhbuysinit++;
         }
         else if (matrix[y][x] == 5) {
             var kpasht = new Hhkendani(x, y, 5);
             KendanineripashtpanArr.push(kpasht);
+            Hhkendaniinit++;
         }
         else if (matrix[y][x] == 6) {
             var jokerr = new Joker(x, y, 6);
             JokerArr.push(jokerr);
+            Jokerinit++;
         }
     }
 }
@@ -148,7 +160,7 @@ function draw_weater() {
     if (Weatherinit == 1) {
         Weather = "Summer";
     }
-    
+
     io.sockets.emit("exanak", Weather);
 }
 
@@ -165,13 +177,23 @@ io.on('connection', function (socket) {
             for (var y = 0; y < matrix.length; ++y) {
                 for (var x = 0; x < matrix[y].length; ++x) {
                     matrix[y][x] = 7;
+                    
                 }
             }
-           
-             
+
+
         }
     });
     io.sockets.emit("matrix", matrix);
 })
+
+var obj = { "info": [] };
+function main() {
+    var file = "statistic.json";
+    obj.info.push({ "Cnvac xoter qanak": Grassinit, "Cnvac xotakerneri qanak": GrassEaterinit, "Cnvac gishatichi qanak": Gishatichinit, "Cnvac hhbuys qanak": Hhbuysinit, "Cnvac hhkendani qanak": Hhkendaniinit, "Cnvac joker qanak": Jokerinit })
+    fs.writeFileSync(file, JSON.stringify(obj, null, 2))
+}
+
 setInterval(drewserver, 1000);
 setInterval(draw_weater, 7000);
+setInterval(main, 3000);

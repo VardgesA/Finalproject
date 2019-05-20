@@ -67,6 +67,7 @@ module.exports =class Gishatich extends LivingCreator {
             this.x = x;
             this.y = y;
             this.energy += 3;
+            
         }
 
 
@@ -80,6 +81,7 @@ module.exports =class Gishatich extends LivingCreator {
             GishatichArr.push(pushgishatich);
             this.energy = 5;
         }
+        Gishatichinit++;
     }
     die() {
         if (this.energy <= 0 || GrassEaterArr.length==0) {
@@ -91,5 +93,6 @@ module.exports =class Gishatich extends LivingCreator {
                 }
             }
         }
+        Gishatichinit--;
     }
 }

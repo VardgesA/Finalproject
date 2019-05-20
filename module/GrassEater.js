@@ -54,6 +54,7 @@ module.exports =class GrassEater extends LivingCreator {
             this.y = y;
             this.energy += 3;
         }
+        
     }
     mul() {
         var newCell = Random(this.chooseCell(0));
@@ -64,6 +65,7 @@ module.exports =class GrassEater extends LivingCreator {
             GrassEaterArr.push(pusheater);
             this.energy = 5;
         }
+        GrassEaterinit++;
     }
 
     die() {
@@ -76,5 +78,6 @@ module.exports =class GrassEater extends LivingCreator {
                 }
             }
         }
+        GrassEaterinit--;
     }
 }
