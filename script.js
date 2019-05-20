@@ -25,6 +25,7 @@ function drawWeather(w) {
     else if (weather == "Spring") {
         p.innerText = "Spring";
     }
+   
 }
 socket.on("exanak", drawWeather);
 function draw() {
@@ -107,71 +108,50 @@ function drawMatrix(matrix) {
                 fill("black")
 
             }
+            else if (matrix[y][x] == 7) {
+                fill("red")
+
+            }
             rect(x * side, y * side, side, side);
         }
     }
 }
 socket.on("matrix", drawMatrix);
 function mouseClicked() {
-    // if (weatherclient == "Summer") {
-    //     weatherclient = "Spring";
-    //     p.innerText = "Spring";
-    // }
-    // else if (weatherclient == "Autumn") {
-    //     weatherclient = "Spring";
-    //     p.innerText = "Spring";
-    // }
-    // else if (weatherclient == "Winter") {
-    //     weatherclient = "Spring";
-    //     p.innerText = "Spring";
-    // }
-    for (var y = 0; y < matrix.length; y++) {
-            for (var x = 0; x < matrix[y].length; x++) {
-                 if (matrix[y][x] == 1) {
-                    fill("red");
-                }
-                else if (matrix[y][x] ==2) {
-                    fill("red");
-                }
-                else if (matrix[y][x] == 3) {
-                    fill("red");
-                }
-                else if (matrix[y][x] == 4) {
-                    fill("red");
-                }
-                else if (matrix[y][x] == 5) {
-                    fill("red");
-                }
-                else if (matrix[y][x] == 6) {
-                    fill("red");
-                }
-                rect(x * side, y * side, side, side);
-            }
-        }
+    if (weatherclient == "Summer") {
+        weatherclient = "Spring";
+        p.innerText = "Spring";
+    }
+    else if (weatherclient == "Autumn") {
+        weatherclient = "Spring";
+        p.innerText = "Spring";
+    }
+    else if (weatherclient == "Winter") {
+        weatherclient = "Spring";
+        p.innerText = "Spring";
+    }
+    
 }
 function keyPressed() {
-    // for (var y = 0; y < matrix.length; y++) {
-    //     for (var x = 0; x < matrix[y].length; x++) {
-    //          if (matrix[y][x] == 1) {
-    //             fill("red");
-    //         }
-    //         else if (matrix[y][x] ==2) {
-    //             fill("red");
-    //         }
-    //         else if (matrix[y][x] == 3) {
-    //             fill("red");
-    //         }
-    //         else if (matrix[y][x] == 4) {
-    //             fill("red");
-    //         }
-    //         else if (matrix[y][x] == 5) {
-    //             fill("red");
-    //         }
-    //         else if (matrix[y][x] == 6) {
-    //             fill("red");
-    //         }
-    //     }
-    // }
+   
+        socket.emit("Space",keyCode);
+        if (weatherclient == "Spring") {
+            weatherclient = "Summer";
+            p.innerText = "Very hot Summer";
+        }
+        else if (weatherclient == "Autumn") {
+            weatherclient = "Summer";
+            p.innerText = "Very hot Summer";
+        }
+        else if (weatherclient == "Winter") {
+            weatherclient = "Summer";
+            p.innerText = "Very hot Summer";
+        }
+        else if (weatherclient == "Summer") {
+            weatherclient = "Summer";
+            p.innerText = "Very hot Summer";
+        }
+    
 }
 
 

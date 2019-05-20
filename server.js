@@ -126,7 +126,7 @@ function drewserver() {
     }
     io.sockets.emit("matrix", matrix);
 }
-setInterval(drewserver, 1000);
+
 Random = function (arr) {
     return arr[Math.floor(Math.random() * arr.length)]
 }
@@ -146,8 +146,32 @@ function draw_weater() {
         Weather = "Spring";
     }
     if (Weatherinit == 1) {
-        Weather="Summer";
+        Weather = "Summer";
     }
-    io.sockets.emit("exanak",Weather);
+    
+    io.sockets.emit("exanak", Weather);
 }
-setInterval(draw_weater,7000)
+
+io.on('connection', function (socket) {
+    socket.on("Space", function (keyCode) {
+        if (keyCode) {
+
+            GrassArr.length = 0;
+            GrassEaterArr.length = 0;
+            GishatichArr.length = 0;
+            XotpashtpanArr.length = 0;
+            KendanineripashtpanArr.length = 0;
+            JokerArr.length = 0;
+            for (var y = 0; y < matrix.length; ++y) {
+                for (var x = 0; x < matrix[y].length; ++x) {
+                    matrix[y][x] = 7;
+                }
+            }
+           
+             
+        }
+    });
+    io.sockets.emit("matrix", matrix);
+})
+setInterval(drewserver, 1000);
+setInterval(draw_weater, 7000);
