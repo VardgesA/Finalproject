@@ -31,12 +31,12 @@ JokerArr = [];
 JokerEaterArr = [];
 JokerMoveArr = [];
 
-Grassinit=0;
-GrassEaterinit=0;
-Gishatichinit=0;
-Hhbuysinit=0;
-Hhkendaniinit=0;
-Jokerinit=0;
+Grassinit = 0;
+GrassEaterinit = 0;
+Gishatichinit = 0;
+Hhbuysinit = 0;
+Hhkendaniinit = 0;
+Jokerinit = 0;
 
 
 
@@ -49,7 +49,7 @@ function genMatrix(w, h) {
         matrix[y] = [];
         for (var x = 0; x < w; x++) {
             var r = Math.floor(Math.random() * 200);
-            if (r < 20) r = 0;
+            if (r < 2) r = 0;
             else if (r < 40) r = 1;
             else if (r < 80) r = 2;
             else if (r < 90) r = 3;
@@ -177,7 +177,7 @@ io.on('connection', function (socket) {
             for (var y = 0; y < matrix.length; ++y) {
                 for (var x = 0; x < matrix[y].length; ++x) {
                     matrix[y][x] = 7;
-                    
+
                 }
             }
 
@@ -193,7 +193,176 @@ function main() {
     obj.info.push({ "Cnvac xoter qanak": Grassinit, "Cnvac xotakerneri qanak": GrassEaterinit, "Cnvac gishatichi qanak": Gishatichinit, "Cnvac hhbuys qanak": Hhbuysinit, "Cnvac hhkendani qanak": Hhkendaniinit, "Cnvac joker qanak": Jokerinit })
     fs.writeFileSync(file, JSON.stringify(obj, null, 2))
 }
+// io.on('connection', function (socket) {
+//     socket.on("Splice", function () {
 
-setInterval(drewserver, 1000);
+//             for (var y = 0; y < matrix.length; ++y) {
+//                 for (var x = 0; x < matrix[y].length; ++x) {
+//                     if(matrix[y][x] == 6){
+//                         matrix[y][x] = 0;
+//                     }
+//                 }
+//             }
+//             JokerArr.length = 0;
+
+//     });
+//     io.sockets.emit("matrix", matrix);
+// })
+io.on('connection', function (socket) {
+    socket.on("xrke", function (ar) {
+        var x = ar[0];
+        var y = ar[1];
+        //  direction = [
+        //     [x - 5, y - 5],
+        //     [x + 5, y - 5],
+        //     [x - 4, y - 4],
+        //     [x + 4, y - 4],
+        //     [x - 3, y - 3],
+        //     [x + 3, y - 3],
+        //     [x - 2, y - 2],
+        //     [x + 2, y - 2],
+        //     [x - 1, y - 1],
+        //     [x + 1, y - 1],
+        //     [x - 1, y + 1],
+        //     [x + 1, y + 1],
+        //     [x - 2, y + 2],
+        //     [x + 2, y + 2],
+        //     [x - 3, y + 3],
+        //     [x + 3, y + 3],
+        //     [x - 4, y + 4],
+        //     [x + 4, y + 4],
+        //     [x - 5, y + 5],
+        //     [x + 5, y + 5]
+
+
+        // ];
+        direction = [
+            [this.x - 1, this.y - 1],
+            [this.x, this.y - 1],
+            [this.x + 1, this.y - 1],
+            [this.x - 1, this.y],
+            [this.x + 1, this.y],
+            [this.x - 1, this.y + 1],
+            [this.x, this.y + 1],
+            [this.x + 1, this.y + 1]
+        ];
+        if (matrix[y][x] == 1) {
+            matrix[y][x] = 0
+            for (var i in GrassArr) {
+                if (x == GrassArr[i].x && y == GrassArr[i].y) {
+                    GrassArr.splice(i, 1);
+                    break;
+                }
+            }
+        }
+        else if (matrix[y][x] == 2) {
+            matrix[y][x] = 0
+            for (var i in GrassEaterArr) {
+                if (x == GrassEaterArr[i].x && y == GrassEaterArr[i].y) {
+                    GrassEaterArr.splice(i, 1);
+                    break;
+                }
+            }
+        }
+        else if (matrix[y][x] == 3) {
+            matrix[y][x] = 0
+            for (var i in GishatichArr) {
+                if (x == GishatichArr[i].x && y == GishatichArr[i].y) {
+                    GishatichArr.splice(i, 1);
+                    break;
+                }
+            }
+        }
+        else if (matrix[y][x] == 4) {
+            matrix[y][x] = 0
+            for (var i in XotpashtpanArr) {
+                if (x == XotpashtpanArr[i].x && y == XotpashtpanArr[i].y) {
+                    XotpashtpanArr.splice(i, 1);
+                    break;
+                }
+            }
+        }
+        else if (matrix[y][x] == 5) {
+            matrix[y][x] = 0
+            for (var i in KendanineripashtpanArr) {
+                if (x == KendanineripashtpanArr[i].x && y == KendanineripashtpanArr[i].y) {
+                    KendanineripashtpanArr.splice(i, 1);
+                    break;
+                }
+            }
+        }
+        else if (matrix[y][x] == 6) {
+            matrix[y][x] = 0
+            for (var i in JokerArr) {
+                if (x == JokerArr[i].x && y == JokerArr[i].y) {
+                    JokerArr.splice(i, 1);
+                    break;
+                }
+            }
+        }
+        for (var i in direction) {
+            var harx = direction[i][0];
+            var hary = direction[i][1];
+            if (harx >= 0 && harx < matrix[0].length && hary >= 1 && hary < matrix[1].length) {
+                if (matrix[hary][harx] == 1) {
+                    matrix[hary][harx]= 0
+                    for (var i in GrassArr) {
+                        if (harx == GrassArr[i].x && hary == GrassArr[i].y) {
+                            GrassArr.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+                else if (matrix[hary][harx] == 2) {
+                    matrix[hary][harx] = 0
+                    for (var i in GrassEaterArr) {
+                        if (harx == GrassEaterArr[i].x && hary == GrassEaterArr[i].y) {
+                            GrassEaterArr.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+                else if (matrix[hary][harx] == 3) {
+                    matrix[hary][harx] = 0
+                    for (var i in GishatichArr) {
+                        if (harx == GishatichArr[i].x && hary == GishatichArr[i].y) {
+                            GishatichArr.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+                else if (matrix[hary][harx] == 4) {
+                    matrix[hary][harx] = 0
+                    for (var i in XotpashtpanArr) {
+                        if (harx == XotpashtpanArr[i].x && hary == XotpashtpanArr[i].y) {
+                            XotpashtpanArr.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+                else if (matrix[hary][harx] == 5) {
+                    matrix[hary][harx] = 0
+                    for (var i in KendanineripashtpanArr) {
+                        if (harx == KendanineripashtpanArr[i].x && hary == KendanineripashtpanArr[i].y) {
+                            KendanineripashtpanArr.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+                else if (matrix[hary][harx] == 6) {
+                    matrix[hary][harx] = 0
+                    for (var i in JokerArr) {
+                        if (harx == JokerArr[i].x && hary == JokerArr[i].y) {
+                            JokerArr.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    });
+    io.sockets.emit("matrix", matrix);
+})
+setInterval(drewserver, 500);
 setInterval(draw_weater, 7000);
 setInterval(main, 3000);

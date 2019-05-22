@@ -6,7 +6,7 @@ socket.on("exanak", function (w) {
 })
 function setup() {
 
-    createCanvas(40 * side, 40 * side);
+    createCanvas(20 * side, 20 * side);
     background('#acacac');
 
 }
@@ -117,20 +117,12 @@ function drawMatrix(matrix) {
     }
 }
 socket.on("matrix", drawMatrix);
-function mouseClicked() {
-    if (weatherclient == "Summer") {
-        weatherclient = "Spring";
-        p.innerText = "Spring";
-    }
-    else if (weatherclient == "Autumn") {
-        weatherclient = "Spring";
-        p.innerText = "Spring";
-    }
-    else if (weatherclient == "Winter") {
-        weatherclient = "Spring";
-        p.innerText = "Spring";
-    }
-    
+function mouseClicked() {   
+    // socket.emit("Splice");
+     var x=Math.floor(mouseX/side) ;
+     var y=Math.floor(mouseY/side);
+     var ar=[x,y];
+     socket.emit("xrke",ar);
 }
 function keyPressed() {
    
