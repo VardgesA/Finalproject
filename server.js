@@ -148,14 +148,14 @@ function draw_weater() {
         Weatherinit = 1
     }
     if (Weatherinit == 4) {
-        Weather = "Autumn";
+        Weather = "Spring";
     }
     if (Weatherinit == 3) {
         Weather = "Winter";
 
     }
     if (Weatherinit == 2) {
-        Weather = "Spring";
+        Weather = "Autumn";
     }
     if (Weatherinit == 1) {
         Weather = "Summer";
@@ -165,8 +165,8 @@ function draw_weater() {
 }
 
 io.on('connection', function (socket) {
-    socket.on("Space", function (keyCode) {
-        if (keyCode) {
+    socket.on("Space", function () {
+       
 
             GrassArr.length = 0;
             GrassEaterArr.length = 0;
@@ -182,7 +182,7 @@ io.on('connection', function (socket) {
             }
 
 
-        }
+        
     });
     io.sockets.emit("matrix", matrix);
 })
@@ -212,42 +212,33 @@ io.on('connection', function (socket) {
     socket.on("xrke", function (ar) {
         var x = ar[0];
         var y = ar[1];
-        //  direction = [
-        //     [x - 5, y - 5],
-        //     [x + 5, y - 5],
-        //     [x - 4, y - 4],
-        //     [x + 4, y - 4],
-        //     [x - 3, y - 3],
-        //     [x + 3, y - 3],
-        //     [x - 2, y - 2],
-        //     [x + 2, y - 2],
-        //     [x - 1, y - 1],
-        //     [x + 1, y - 1],
-        //     [x - 1, y + 1],
-        //     [x + 1, y + 1],
-        //     [x - 2, y + 2],
-        //     [x + 2, y + 2],
-        //     [x - 3, y + 3],
-        //     [x + 3, y + 3],
-        //     [x - 4, y + 4],
-        //     [x + 4, y + 4],
-        //     [x - 5, y + 5],
-        //     [x + 5, y + 5]
+         direction = [
+            [x - 5, y - 5],
+            [x + 5, y - 5],
+            [x - 4, y - 4],
+            [x + 4, y - 4],
+            [x - 3, y - 3],
+            [x + 3, y - 3],  
+            [x - 2, y - 2],
+            [x + 2, y - 2],
+            [x - 1, y - 1],
+            [x + 1, y - 1],
+            [x - 1, y + 1],
+            [x + 1, y + 1],
+            [x - 2, y + 2],
+            [x + 2, y + 2],
+            [x - 3, y + 3],
+            [x + 3, y + 3],
+            [x - 4, y + 4],
+            [x + 4, y + 4],
+            [x - 5, y + 5],
+            [x + 5, y + 5]
 
 
-        // ];
-        direction = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
         ];
+       
         if (matrix[y][x] == 1) {
-            matrix[y][x] = 0
+            
             for (var i in GrassArr) {
                 if (x == GrassArr[i].x && y == GrassArr[i].y) {
                     GrassArr.splice(i, 1);
@@ -256,7 +247,7 @@ io.on('connection', function (socket) {
             }
         }
         else if (matrix[y][x] == 2) {
-            matrix[y][x] = 0
+            
             for (var i in GrassEaterArr) {
                 if (x == GrassEaterArr[i].x && y == GrassEaterArr[i].y) {
                     GrassEaterArr.splice(i, 1);
@@ -265,7 +256,7 @@ io.on('connection', function (socket) {
             }
         }
         else if (matrix[y][x] == 3) {
-            matrix[y][x] = 0
+            
             for (var i in GishatichArr) {
                 if (x == GishatichArr[i].x && y == GishatichArr[i].y) {
                     GishatichArr.splice(i, 1);
@@ -283,7 +274,7 @@ io.on('connection', function (socket) {
             }
         }
         else if (matrix[y][x] == 5) {
-            matrix[y][x] = 0
+          
             for (var i in KendanineripashtpanArr) {
                 if (x == KendanineripashtpanArr[i].x && y == KendanineripashtpanArr[i].y) {
                     KendanineripashtpanArr.splice(i, 1);
@@ -292,7 +283,7 @@ io.on('connection', function (socket) {
             }
         }
         else if (matrix[y][x] == 6) {
-            matrix[y][x] = 0
+            
             for (var i in JokerArr) {
                 if (x == JokerArr[i].x && y == JokerArr[i].y) {
                     JokerArr.splice(i, 1);
@@ -300,12 +291,13 @@ io.on('connection', function (socket) {
                 }
             }
         }
+        matrix[y][x] = 0;
         for (var i in direction) {
             var harx = direction[i][0];
             var hary = direction[i][1];
             if (harx >= 0 && harx < matrix[0].length && hary >= 1 && hary < matrix[1].length) {
                 if (matrix[hary][harx] == 1) {
-                    matrix[hary][harx]= 0
+                    
                     for (var i in GrassArr) {
                         if (harx == GrassArr[i].x && hary == GrassArr[i].y) {
                             GrassArr.splice(i, 1);
@@ -314,7 +306,7 @@ io.on('connection', function (socket) {
                     }
                 }
                 else if (matrix[hary][harx] == 2) {
-                    matrix[hary][harx] = 0
+                   
                     for (var i in GrassEaterArr) {
                         if (harx == GrassEaterArr[i].x && hary == GrassEaterArr[i].y) {
                             GrassEaterArr.splice(i, 1);
@@ -323,7 +315,7 @@ io.on('connection', function (socket) {
                     }
                 }
                 else if (matrix[hary][harx] == 3) {
-                    matrix[hary][harx] = 0
+                   
                     for (var i in GishatichArr) {
                         if (harx == GishatichArr[i].x && hary == GishatichArr[i].y) {
                             GishatichArr.splice(i, 1);
@@ -332,7 +324,7 @@ io.on('connection', function (socket) {
                     }
                 }
                 else if (matrix[hary][harx] == 4) {
-                    matrix[hary][harx] = 0
+                    
                     for (var i in XotpashtpanArr) {
                         if (harx == XotpashtpanArr[i].x && hary == XotpashtpanArr[i].y) {
                             XotpashtpanArr.splice(i, 1);
@@ -341,7 +333,7 @@ io.on('connection', function (socket) {
                     }
                 }
                 else if (matrix[hary][harx] == 5) {
-                    matrix[hary][harx] = 0
+                
                     for (var i in KendanineripashtpanArr) {
                         if (harx == KendanineripashtpanArr[i].x && hary == KendanineripashtpanArr[i].y) {
                             KendanineripashtpanArr.splice(i, 1);
@@ -350,7 +342,7 @@ io.on('connection', function (socket) {
                     }
                 }
                 else if (matrix[hary][harx] == 6) {
-                    matrix[hary][harx] = 0
+                    
                     for (var i in JokerArr) {
                         if (harx == JokerArr[i].x && hary == JokerArr[i].y) {
                             JokerArr.splice(i, 1);
@@ -358,11 +350,13 @@ io.on('connection', function (socket) {
                         }
                     }
                 }
+                matrix[hary][harx] = 0;
             }
         }
     });
     io.sockets.emit("matrix", matrix);
 })
+
 setInterval(drewserver, 500);
 setInterval(draw_weater, 7000);
 setInterval(main, 3000);

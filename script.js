@@ -1,4 +1,4 @@
-var side = 10;
+var side = 20;
 socket = io();
 var weatherclient = "Summer";
 socket.on("exanak", function (w) {
@@ -6,7 +6,7 @@ socket.on("exanak", function (w) {
 })
 function setup() {
 
-    createCanvas(20 * side, 20 * side);
+    createCanvas(30 * side, 30 * side);
     background('#acacac');
 
 }
@@ -25,7 +25,7 @@ function drawWeather(w) {
     else if (weather == "Spring") {
         p.innerText = "Spring";
     }
-   
+
 }
 socket.on("exanak", drawWeather);
 function draw() {
@@ -117,33 +117,50 @@ function drawMatrix(matrix) {
     }
 }
 socket.on("matrix", drawMatrix);
-function mouseClicked() {   
+function mouseClicked() {
     // socket.emit("Splice");
-     var x=Math.floor(mouseX/side) ;
-     var y=Math.floor(mouseY/side);
-     var ar=[x,y];
-     socket.emit("xrke",ar);
+     x = Math.floor(mouseX / side);
+     y = Math.floor(mouseY / side);
+    ar = [x, y];
+    socket.emit("xrke", ar);
 }
-function keyPressed() {
-   
-        socket.emit("Space",keyCode);
-        if (weatherclient == "Spring") {
-            weatherclient = "Summer";
-            p.innerText = "Very hot Summer";
-        }
-        else if (weatherclient == "Autumn") {
-            weatherclient = "Summer";
-            p.innerText = "Very hot Summer";
-        }
-        else if (weatherclient == "Winter") {
-            weatherclient = "Summer";
-            p.innerText = "Very hot Summer";
-        }
-        else if (weatherclient == "Summer") {
-            weatherclient = "Summer";
-            p.innerText = "Very hot Summer";
-        }
-    
+function Arm() {
+
+    socket.emit("Space");
+    if (weatherclient == "Spring") {
+        weatherclient = "Summer";
+        p.innerText = "Armagedon";
+    }
+    else if (weatherclient == "Autumn") {
+        weatherclient = "Summer";
+        p.innerText = "Armagedon";
+    }
+    else if (weatherclient == "Winter") {
+        weatherclient = "Summer";
+        p.innerText = "Armagedon";
+    }
+    else if (weatherclient == "Summer") {
+        weatherclient = "Summer";
+        p.innerText = "Armagedon";
+    }
+
+}
+function keyPressed(){
+
+    socket.emit("Garun");
+     if (weatherclient == "Autumn") {
+        weatherclient = "Spring";
+        p.innerText = "Spring";
+    }
+    else if (weatherclient == "Winter") {
+        weatherclient = "Spring";
+        p.innerText = "Spring";
+    }
+    else if (weatherclient == "Summer") {
+        weatherclient = "Spring";
+        p.innerText = "Spring";
+    }
+
 }
 
 
