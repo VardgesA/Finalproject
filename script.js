@@ -11,7 +11,7 @@ function setup() {
 
 }
 function drawWeather(w) {
-    p = document.getElementById('seasons')
+    p = document.getElementById('seasons');
     var weather = w;
     if (weather == "Summer") {
         p.innerText = "Summer";
@@ -28,14 +28,8 @@ function drawWeather(w) {
 
 }
 socket.on("exanak", drawWeather);
-function draw() {
-
-
-
-
-}
 function drawMatrix(matrix) {
-    background('#33FFFF')
+    background('#33FFFF');
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
 
@@ -88,7 +82,7 @@ function drawMatrix(matrix) {
             }
             else if (matrix[y][x] == 4) {
                 if (weatherclient == "Summer") {
-                    fill("white")
+                    fill("white");
                 }
                 if (weatherclient == "Autumn") {
                     fill("white");
@@ -105,11 +99,11 @@ function drawMatrix(matrix) {
                 fill("blue");
             }
             else if (matrix[y][x] == 6) {
-                fill("black")
+                fill("black");
 
             }
             else if (matrix[y][x] == 7) {
-                fill("red")
+                fill("red");
 
             }
             rect(x * side, y * side, side, side);
@@ -117,10 +111,9 @@ function drawMatrix(matrix) {
     }
 }
 socket.on("matrix", drawMatrix);
-function mouseClicked() {
-    // socket.emit("Splice");
-     x = Math.floor(mouseX / side);
-     y = Math.floor(mouseY / side);
+function mouseClicked() { 
+    x = Math.floor(mouseX / side);
+    y = Math.floor(mouseY / side);
     ar = [x, y];
     socket.emit("xrke", ar);
 }
@@ -145,10 +138,10 @@ function Arm() {
     }
 
 }
-function keyPressed(){
+function keyPressed() {
 
     socket.emit("Garun");
-     if (weatherclient == "Autumn") {
+    if (weatherclient == "Autumn") {
         weatherclient = "Spring";
         p.innerText = "Spring";
     }
