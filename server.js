@@ -343,5 +343,5 @@ io.on('connection', function (socket) {
 })
 
 setInterval(drewserver, 500);
-setInterval(draw_weater, 7000);
+setInterval(draw_weater, 4000);
 setInterval(main, 3000);
